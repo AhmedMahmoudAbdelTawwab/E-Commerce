@@ -1,11 +1,11 @@
-class FireBaseState<T> {}
+class FireBaseResult<T> {}
 
-class SuccessFireBase<T> extends FireBaseState<T> {
+class SuccessFireBase<T> extends FireBaseResult<T> {
   SuccessFireBase(this.successFB);
   T successFB;
 }
 
-class ErorrFireBase<T> extends FireBaseState<T> {
+class ErorrFireBase<T> extends FireBaseResult<T> {
   ErorrFireBase(this.fireBaseErorrMassege);
   String fireBaseErorrMassege;
 }

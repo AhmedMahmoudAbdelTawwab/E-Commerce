@@ -1,5 +1,5 @@
-class UserModel {
-  UserModel({
+class UserDto {
+  UserDto({
     required this.name,
     required this.password,
     required this.email,
@@ -11,7 +11,7 @@ class UserModel {
   String? email;
   String? userImage;
   String? id;
-  UserModel.fromJson(Map<String, dynamic> json) {
+  UserDto.fromJson(Map<String, dynamic> json) {
     name = json["name"];
     password = json["password"];
     email = json["email"];
