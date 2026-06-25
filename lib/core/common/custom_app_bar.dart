@@ -1,8 +1,9 @@
+import 'package:e_commerce/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:e_commerce/features/core/utils/app_colors.dart';
 
+// ignore: must_be_immutable
 class CustomAppBar extends StatelessWidget {
-  CustomAppBar({required this.titleText});
+  CustomAppBar({super.key, required this.titleText});
   String titleText;
 
   @override
@@ -11,7 +12,7 @@ class CustomAppBar extends StatelessWidget {
       alignment: .center,
       child: Text(
         titleText,
-        style: TextStyle(fontSize: 22, color: AppColors.appBarText),
+        style: TextStyle(fontSize: 22, color: AppColors.textCoLor),
       ),
     );
   }
