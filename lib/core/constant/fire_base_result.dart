@@ -1,4 +1,4 @@
-class FireBaseResult<T> {}
+sealed class FireBaseResult<T> {}
 
 class SuccessFireBase<T> extends FireBaseResult<T> {
   SuccessFireBase(this.successFB);

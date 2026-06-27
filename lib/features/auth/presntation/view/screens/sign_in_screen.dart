@@ -1,7 +1,7 @@
-import 'package:e_commerce/core/common/custom_app_bar.dart';
-import 'package:e_commerce/core/common/custom_button_widget.dart';
-import 'package:e_commerce/core/common/custom_text_form_field_widget.dart';
-import 'package:e_commerce/core/common/custom_text_widget.dart';
+import 'package:e_commerce/features/auth/presntation/view/widget/custom_app_bar.dart';
+import 'package:e_commerce/features/auth/presntation/view/widget/custom_button_widget.dart';
+import 'package:e_commerce/features/auth/presntation/view/widget/custom_text_form_field_widget.dart';
+import 'package:e_commerce/features/auth/presntation/view/widget/custom_text_widget.dart';
 import 'package:e_commerce/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 

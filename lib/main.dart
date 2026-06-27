@@ -1,4 +1,4 @@
-import 'package:e_commerce/features/sign_in/presntation/view/sign_in_screen.dart';
+import 'package:e_commerce/features/auth/presntation/view/screens/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';

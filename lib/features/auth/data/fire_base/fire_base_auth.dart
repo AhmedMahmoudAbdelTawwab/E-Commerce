@@ -1,14 +1,10 @@
-import 'package:e_commerce/features/sign_in/data/model/user_dto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class SignInFireBase {
-  Future signIn(UserDto user) async {
+class FireBaseAuth {
+  Future regstier({required String email, required String password}) async {
     try {
       final credential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-            email: user.email!,
-            password: user.password!,
-          );
+          .createUserWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
