@@ -1,41 +1,21 @@
 import 'package:e_commerce/features/auth/domain/entity/auth_entity.dart';
 
 class UserDto {
-  UserDto({
-    required this.name,
-    required this.password,
-    required this.email,
-    required this.userImage,
-    required this.id,
-  });
+  UserDto({this.name, this.password, this.email, this.userImage, this.uid});
   String? name;
   String? password;
   String? email;
   String? userImage;
-  String? id;
+  String? uid;
   UserDto.fromJson(Map<String, dynamic> json) {
     name = json["name"];
     password = json["password"];
     email = json["email"];
     userImage = json["userImage"];
-    id = json["id"];
+    uid = json["uid"];
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data["name"] = name;
-    data["password"] = password;
-    data["email"] = email;
-    data["userImage"] = userImage;
-    data["id"] = id;
-    return data;
-  }
-
-  SignInEntity toEntity() {
-    return SignInEntity(
-      email: email ?? '',
-      password: password ?? '',
-      name: name ?? '',
-    );
+  AuthEntity toEntity() {
+    return AuthEntity(email: email ?? '', id: uid ?? '', name: name ?? '');
   }
 }

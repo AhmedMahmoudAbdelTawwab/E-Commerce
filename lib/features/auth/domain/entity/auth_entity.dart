@@ -1,5 +1,6 @@
 class AuthEntity {
-  AuthEntity({this.email = "", this.password = ""});
+  AuthEntity({this.email = "", this.id = "", this.name = ""});
   final String email;
-  final String password;
+  final String id;
+  final String name;
 }

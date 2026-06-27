@@ -9,3 +9,7 @@ class ErorrFireBase<T> extends FireBaseResult<T> {
   ErorrFireBase(this.fireBaseErorrMassege);
   String fireBaseErorrMassege;
 }
+
+
+//بدل ما الـ function ترمي exception أو ترجع null لو حصل error، بترجع object واضح فيه إما النجاح أو الخطأ.
+
