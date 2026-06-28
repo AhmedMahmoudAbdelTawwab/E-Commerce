@@ -1,4 +1,5 @@
 import 'package:e_commerce/core/utils/app_colors.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -7,26 +8,33 @@ class TextRichWidget extends StatelessWidget {
     super.key,
     required this.firstText,
     required this.secoundText,
+    required this.textRichOnTap,
   });
   String firstText;
   String secoundText;
+  void Function() textRichOnTap;
 
   @override
   Widget build(BuildContext context) {
-    return Text.rich(
-      TextSpan(
-        text: firstText,
-        style: TextStyle(fontSize: 14, color: AppColors.textCoLor),
-        children: [
-          TextSpan(
-            text: secoundText,
-            style: TextStyle(
-              fontSize: 14,
-              color: AppColors.textCoLor,
-              fontWeight: .w700,
+    return Container(
+      height: 80,
+      alignment: .topCenter,
+      child: Text.rich(
+        TextSpan(
+          text: firstText,
+          style: TextStyle(fontSize: 14, color: AppColors.textCoLor),
+          children: [
+            TextSpan(
+              text: secoundText,
+              style: TextStyle(
+                fontSize: 14,
+                color: AppColors.textCoLor,
+                fontWeight: .w700,
+              ),
+              recognizer: TapGestureRecognizer()..onTap = () => textRichOnTap,
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

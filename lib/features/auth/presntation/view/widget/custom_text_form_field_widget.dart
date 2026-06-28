@@ -6,9 +6,13 @@ class CustomTextFormFieldWidget extends StatelessWidget {
   CustomTextFormFieldWidget({
     super.key,
     required this.hintText,
+    required this.text,
     required this.controller,
+    required this.suffixIcon,
   });
   String hintText;
+  String text;
+  Widget? suffixIcon;
   TextEditingController controller;
   final border = OutlineInputBorder(
     borderRadius: BorderRadius.circular(8),
@@ -16,14 +20,22 @@ class CustomTextFormFieldWidget extends StatelessWidget {
   );
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      autocorrect: false,
-      decoration: InputDecoration(
-        hintText: hintText,
-        focusedBorder: border,
-        enabledBorder: border,
-      ),
+    return Column(
+      crossAxisAlignment: .start,
+      spacing: 8,
+      children: [
+        Text(text, style: TextStyle(fontSize: 18, color: AppColors.textCoLor)),
+        TextFormField(
+          controller: controller,
+          autocorrect: false,
+          decoration: InputDecoration(
+            suffixIcon: suffixIcon,
+            hintText: hintText,
+            focusedBorder: border,
+            enabledBorder: border,
+          ),
+        ),
+      ],
     );
   }
 }
