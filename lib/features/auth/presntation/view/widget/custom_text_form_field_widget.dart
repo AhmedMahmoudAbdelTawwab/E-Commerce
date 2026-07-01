@@ -9,9 +9,11 @@ class CustomTextFormFieldWidget extends StatelessWidget {
     required this.text,
     required this.controller,
     required this.suffixIcon,
+    required this.validator,
   });
   String hintText;
   String text;
+  String? Function(String? val) validator;
   Widget? suffixIcon;
   TextEditingController controller;
   final border = OutlineInputBorder(
@@ -28,6 +30,7 @@ class CustomTextFormFieldWidget extends StatelessWidget {
         TextFormField(
           controller: controller,
           autocorrect: false,
+          validator: validator,
           decoration: InputDecoration(
             suffixIcon: suffixIcon,
             hintText: hintText,

@@ -1,3 +1,4 @@
+import 'package:e_commerce/features/auth/presntation/view/screens/login_screen.dart';
 import 'package:e_commerce/features/auth/presntation/view/screens/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -14,6 +15,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: SignInScreen());
+    return MaterialApp(
+      routes: {
+        LoginScreen.routeName: (context) => LoginScreen(),
+        SignInScreen.routeName: (context) => SignInScreen(),
+      },
+      home: SignInScreen(),
+    );
   }
 }

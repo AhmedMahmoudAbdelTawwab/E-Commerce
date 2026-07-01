@@ -1,18 +1,18 @@
 part of 'auth_cubit.dart';
 
 @immutable
-sealed class AuthState<AuthEntity> {}
+sealed class AuthState {}
 
 final class AuthInitial extends AuthState {}
 
 final class AuthLoading extends AuthState {}
 
 final class AuthSuccess extends AuthState {
-  AuthEntity authSuccess;
-  AuthSuccess(this.authSuccess);
+  AuthEntity _authEntity;
+  AuthSuccess({required this._authEntity});
 }
 
 final class AuthErorr extends AuthState {
   String authErorrMessage;
-  AuthErorr(this.authErorrMessage);
+  AuthErorr({required this.authErorrMessage});
 }

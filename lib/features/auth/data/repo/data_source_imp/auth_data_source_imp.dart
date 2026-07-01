@@ -6,11 +6,14 @@ import 'package:e_commerce/features/auth/domain/entity/auth_entity.dart';
 import 'package:e_commerce/features/auth/domain/repo/data_source_interface/auth_data_source_interfce.dart';
 
 class AuthDataSourceImp implements AuthDataSourceInterface {
-  AuthDataSourceImp({required this.authFB});
+  AuthDataSourceImp(this.authFB);
   AuthFireBase authFB;
   @override
-  Future<FireBaseResult<AuthEntity>> regstier() async {
-    final result = await authFB.regstier();
+  Future<FireBaseResult<AuthEntity>> regstier({
+    required String email,
+    required String password,
+  }) async {
+    final result = await authFB.regstier(email: email, password: password);
     switch (result) {
       case SuccessFireBase<UserDto>():
         return SuccessFireBase<AuthEntity>(result.successFB.toEntity());
@@ -19,3 +22,6 @@ class AuthDataSourceImp implements AuthDataSourceInterface {
     }
   }
 }
+
+AuthDataSourceInterface authDataSourceInterfaceinjectable() =>
+    AuthDataSourceImp(AuthFireBase());

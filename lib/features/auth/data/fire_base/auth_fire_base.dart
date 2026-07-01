@@ -4,15 +4,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:e_commerce/features/auth/data/model/user_dto.dart';
 
 class AuthFireBase {
-  UserDto userDto;
-  AuthFireBase({required this.userDto});
-  Future<FireBaseResult<UserDto>> regstier() async {
+  AuthFireBase();
+  Future<FireBaseResult<UserDto>> regstier({
+    required String email,
+    required String password,
+  }) async {
     try {
       final credential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-            email: userDto.email ?? "",
-            password: userDto.password ?? "",
-          );
+          .createUserWithEmailAndPassword(email: email, password: password);
       return SuccessFireBase<UserDto>(
         UserDto(email: credential.user!.email, uid: credential.user!.uid),
       );
@@ -20,7 +19,9 @@ class AuthFireBase {
       if (e.code == 'weak-password') {
         return ErorrFireBase<UserDto>('The password provided is too weak.');
       } else if (e.code == 'email-already-in-use') {
-        return ErorrFireBase("The account already exists for that email.");
+        return ErorrFireBase<UserDto>(
+          "The account already exists for that email.",
+        );
       }
     } catch (e) {
       return ErorrFireBase<UserDto>(e.toString());
