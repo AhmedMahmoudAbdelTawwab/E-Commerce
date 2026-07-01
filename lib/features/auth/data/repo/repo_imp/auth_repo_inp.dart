@@ -1,5 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:e_commerce/core/constant/fire_base_result.dart';
+import 'package:e_commerce/core/neywork/fire_base_result.dart';
 import 'package:e_commerce/features/auth/data/repo/data_source_imp/auth_data_source_imp.dart';
 import 'package:e_commerce/features/auth/domain/entity/auth_entity.dart';
 import 'package:e_commerce/features/auth/domain/repo/data_source_interface/auth_data_source_interfce.dart';
@@ -14,6 +14,18 @@ class AuthRepoInp implements AuthRepoInterface {
     required String password,
   }) {
     final result = _authDataSourceImp.regstier(
+      email: email,
+      password: password,
+    );
+    return result;
+  }
+
+  @override
+  Future<FireBaseResult<bool>> login({
+    required String email,
+    required String password,
+  }) async {
+    final result = await _authDataSourceImp.login(
       email: email,
       password: password,
     );

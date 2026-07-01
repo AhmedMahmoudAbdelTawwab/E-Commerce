@@ -7,8 +7,8 @@ import 'package:e_commerce/features/auth/presntation/view/widget/custom_button_w
 import 'package:e_commerce/features/auth/presntation/view/widget/custom_text_form_field_widget.dart';
 import 'package:e_commerce/features/auth/presntation/view/widget/text_rich_widget.dart';
 import 'package:e_commerce/features/auth/presntation/view_model/cubit/auth_cubit.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 //Afify12345
@@ -66,23 +66,56 @@ class _LoginScreenState extends State<LoginScreen> {
                 suffixIcon: null,
                 validator: ValidatorApp.validatePassword,
               ),
-              CustomButtonWidget(buttonText: "Login ", onTap: () {}),
+              BlocListener<AuthCubit, AuthState>(
+                bloc: _cubit,
+                listener: (context, state) {
+                  if (state is AuthLoading) {
+                    showDialog(
+                      context: context,
+                      builder: (context) =>
+                          const Center(child: CircularProgressIndicator()),
+                    );
+                  }
+                  if (state is AuthLoginSuccess) {
+                    Navigator.of(context).pop();
+                    Navigator.pushNamed(context, LoginScreen.routeName);
+                  }
+                  if (state is AuthErorr) {
+                    Navigator.of(context).pop();
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: Text("Error"),
+                        content: Text(state.authErorrMessage),
+                      ),
+                    );
+                  }
+                },
+                child: CustomButtonWidget(
+                  buttonText: "Login ",
+                  onTap: () {
+                    if (_formKey.currentState!.validate()) {
+                      _cubit.login(
+                        email: emailController.text,
+                        password: passwordController.text,
+                      );
+                    }
+                  },
+                ),
+              ),
             ],
           ),
         ),
       ),
 
-      bottomNavigationBar: BlocListener<AuthCubit, AuthState>(
-        bloc: _cubit,
-        listener: (context, state) {},
-        child: TextRichWidget(
-          firstText: "Don’t have an account? ",
-          secoundText: "sign up",
-          textRichOnTap: () {
+      bottomNavigationBar: TextRichWidget(
+        firstText: "Don’t have an account? ",
+        secoundText: "sign up",
+        recognizer: TapGestureRecognizer()
+          ..onTap = () {
             Navigator.pushReplacementNamed(context, SignInScreen.routeName);
             setState(() {});
           },
-        ),
       ),
     );
   }

@@ -7,6 +7,7 @@ import 'package:e_commerce/features/auth/presntation/view/widget/custom_text_for
 import 'package:e_commerce/core/utils/app_colors.dart';
 import 'package:e_commerce/features/auth/presntation/view/widget/text_rich_widget.dart';
 import 'package:e_commerce/features/auth/presntation/view_model/cubit/auth_cubit.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -96,6 +97,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     Navigator.pushNamed(context, LoginScreen.routeName);
                   }
                   if (state is AuthErorr) {
+                    Navigator.of(context).pop();
                     showDialog(
                       context: context,
                       builder: (context) => AlertDialog(
@@ -121,18 +123,14 @@ class _SignInScreenState extends State<SignInScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: BlocListener<AuthCubit, AuthState>(
-        bloc: _cubit,
-        listener: (context, state) {},
-        child: TextRichWidget(
-          firstText: "Already have an account? ",
-          secoundText: "Login",
-          textRichOnTap: () {
-            setState(() {
-              Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
-            });
+      bottomNavigationBar: TextRichWidget(
+        firstText: "Already have an account? ",
+        secoundText: "Login",
+        recognizer: TapGestureRecognizer()
+          ..onTap = () {
+            Navigator.pushReplacementNamed(context, LoginScreen.routeName);
+            setState(() {});
           },
-        ),
       ),
     );
   }

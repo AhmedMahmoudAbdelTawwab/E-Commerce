@@ -8,12 +8,11 @@ class TextRichWidget extends StatelessWidget {
     super.key,
     required this.firstText,
     required this.secoundText,
-    required this.textRichOnTap,
+    required this.recognizer,
   });
   String firstText;
   String secoundText;
-  void Function() textRichOnTap;
-
+  GestureRecognizer? recognizer;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,7 +30,7 @@ class TextRichWidget extends StatelessWidget {
                 color: AppColors.textCoLor,
                 fontWeight: .w700,
               ),
-              recognizer: TapGestureRecognizer()..onTap = () => textRichOnTap,
+              recognizer: recognizer,
             ),
           ],
         ),

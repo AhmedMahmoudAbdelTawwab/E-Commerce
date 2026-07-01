@@ -1,5 +1,6 @@
 import 'package:e_commerce/features/auth/presntation/view/screens/login_screen.dart';
 import 'package:e_commerce/features/auth/presntation/view/screens/sign_in_screen.dart';
+import 'package:e_commerce/features/home/presentation/view/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       routes: {
         LoginScreen.routeName: (context) => LoginScreen(),
         SignInScreen.routeName: (context) => SignInScreen(),
+        HomeScreen.routeName: (context) => HomeScreen(),
       },
       home: SignInScreen(),
     );
