@@ -7,6 +7,7 @@ import 'package:e_commerce/features/auth/presntation/view/widget/custom_button_w
 import 'package:e_commerce/features/auth/presntation/view/widget/custom_text_form_field_widget.dart';
 import 'package:e_commerce/features/auth/presntation/view/widget/text_rich_widget.dart';
 import 'package:e_commerce/features/auth/presntation/view_model/cubit/auth_cubit.dart';
+import 'package:e_commerce/features/home/presentation/view/screens/home_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,12 +23,13 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  late final AuthCubit _cubit;
   final _formKey = GlobalKey<FormState>();
+  late final AuthCubit _cubitLogin;
 
-  void initstate() {
+  @override
+  void initState() {
     super.initState();
-    _cubit = AuthCubit(authUseCaseinjectable());
+    _cubitLogin = AuthCubit(authUseCaseinjectable());
   }
 
   @override
@@ -67,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 validator: ValidatorApp.validatePassword,
               ),
               BlocListener<AuthCubit, AuthState>(
-                bloc: _cubit,
+                bloc: _cubitLogin,
                 listener: (context, state) {
                   if (state is AuthLoading) {
                     showDialog(
@@ -78,7 +80,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   }
                   if (state is AuthLoginSuccess) {
                     Navigator.of(context).pop();
-                    Navigator.pushNamed(context, LoginScreen.routeName);
+                    Navigator.pushReplacementNamed(
+                      context,
+                      HomeScreen.routeName,
+                    );
                   }
                   if (state is AuthErorr) {
                     Navigator.of(context).pop();
@@ -95,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   buttonText: "Login ",
                   onTap: () {
                     if (_formKey.currentState!.validate()) {
-                      _cubit.login(
+                      _cubitLogin.login(
                         email: emailController.text,
                         password: passwordController.text,
                       );
